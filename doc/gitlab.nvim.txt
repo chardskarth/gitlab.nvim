@@ -736,6 +736,7 @@ parameters.
   require("gitlab").choose_merge_request({ open_reviewer = false })
   require("gitlab").choose_merge_request({ label = {"include_mrs_with_label"} })
   require("gitlab").choose_merge_request({ notlabel = {"exclude_mrs_with_label"} })
+  require("gitlab").choose_merge_request({ state = "closed,locked" })
 <
     Parameters: ~
         • {opts}: (table|nil) Keyword arguments to configure the checkout.
@@ -744,6 +745,8 @@ parameters.
             • {label}: (table<string>) Return merge requests with *including* matching labels
             • {notlabel}: (table<string>) Return merge requests *excluding*
               matching label
+            • {state}: (string, csv) Return merge requests that are: `opened`,
+              `closed`, `locked` or `merged`
 <
                                                                 *gitlab.nvim.review*
 gitlab.review() ~

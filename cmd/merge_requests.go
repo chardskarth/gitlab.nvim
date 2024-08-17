@@ -13,6 +13,7 @@ import (
 type ListMergeRequestRequest struct {
 	Label    []string `json:"label"`
 	NotLabel []string `json:"notlabel"`
+  State string `json:state,omitempty`
 }
 
 type ListMergeRequestResponse struct {
@@ -44,7 +45,7 @@ func (a *api) mergeRequestsHandler(w http.ResponseWriter, r *http.Request) {
 
 	options := gitlab.ListProjectMergeRequestsOptions{
 		Scope:     gitlab.Ptr("all"),
-		State:     gitlab.Ptr("opened"),
+		State:     &listMergeRequestRequest.State,
 		Labels:    (*gitlab.LabelOptions)(&listMergeRequestRequest.Label),
 		NotLabels: (*gitlab.LabelOptions)(&listMergeRequestRequest.NotLabel),
 	}
